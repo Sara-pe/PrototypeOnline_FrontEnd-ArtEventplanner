@@ -336,12 +336,14 @@
     align-items: flex-start;
 }
 
+
 .friendsList {
     display: flex;
     flex-direction: column;
     gap: 8px;
     height: 100%;
     overflow-y: scroll;
+    max-height: 248px;
 }
 
 
