@@ -19,7 +19,7 @@ export const Users = () => {
                     </div>
 
                     <div className={styles.searchContainer}>
-                        <input type="text"  value={search}  placeholder="   Search users" 
+                        <input type="text" className='search-field' value={search}  placeholder="Search users" 
                         onChange={(e) => setSearch(e.target.value)} />
                 
                     </div>

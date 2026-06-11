@@ -26,7 +26,7 @@ export const Friends = () => {
                 </div>
 
    {showSearch && (<div className={styles.searchContainer}>
-                    <input type="text" value={search} placeholder="   Search friend"
+                    <input type="text" className='search-field' value={search} placeholder="Search friend"
                         onChange={(e) => setSearch(e.target.value)} />
 
                     <button onClick={() => setShowSearch(false)}>{/*<img src="/icons/close.svg" alt="Close search bar" /> */}<p className='black'>Cancel</p></button>
