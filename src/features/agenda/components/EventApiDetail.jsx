@@ -131,7 +131,7 @@ export const EventApiDetail = () => {
 
                 </div>
 
-                <div className={styles.descripContainer}>
+                {data.translations?.en?.longdescr && <div className={styles.descripContainer}>
                     <div ref={textRef} className={expanded ? styles.textExpanded : styles.textCollapsed}>
 
                         {data.translations?.en?.longdescr?.split('\n').map((sentence, index) => (
@@ -146,7 +146,7 @@ export const EventApiDetail = () => {
                                 {expanded ? 'Read less' : 'Read more'}
                             </button>
                         </div>}
-                </div>
+                </div>}
 
                 <div className={styles.scheduleContainer}>
 
