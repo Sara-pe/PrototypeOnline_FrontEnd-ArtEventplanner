@@ -52,7 +52,12 @@ justify-content: space-between;
 gap: 8px;
 align-items: center;
 width: 100%;
+}
 
+
+.searchContainer input {
+  border-radius: 20px;
+  padding-left: 16px;
 }
 
 .searchContainer img {

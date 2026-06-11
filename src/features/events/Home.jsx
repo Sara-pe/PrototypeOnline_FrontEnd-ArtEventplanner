@@ -30,7 +30,7 @@ export const Home = () => {
 
                 </div>
                 {showSearch && (<div className={styles.searchContainer}>
-                    <input type="text" value={search} placeholder="   Search event"
+                    <input type="text" value={search} placeholder="Search event"
                         onChange={(e) => setSearch(e.target.value)} />
 
                     <button onClick={() => setShowSearch(false)}>{/*<img src="/icons/close.svg" alt="Close search bar" /> */}<p className='black'>Cancel</p></button>
