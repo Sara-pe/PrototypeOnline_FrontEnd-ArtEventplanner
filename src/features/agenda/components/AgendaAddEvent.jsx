@@ -1,6 +1,7 @@
 import styles from '../Agenda.module.css'
 import { useId } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router';
+import { useEffect } from 'react';
 
 import eventService from '../../../service/event.service'
 
