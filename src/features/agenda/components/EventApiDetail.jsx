@@ -20,6 +20,10 @@ export const EventApiDetail = () => {
     const [isOverflowing, setIsOverflowing] = useState(false)
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
 
         if (data) return
 
@@ -54,7 +58,7 @@ export const EventApiDetail = () => {
 
     useEffect(() => {
         if (textRef.current) {
-            setIsOverflowing(textRef.current.scrollHeight > 198)
+            setIsOverflowing(textRef.current.scrollHeight > 196)
         }
     }, [data])
 
@@ -99,9 +103,9 @@ export const EventApiDetail = () => {
 
                     {/* CardIntro*/}
                     <div className={styles.cardIntro}>
-                        <img src={(Array.isArray(data.media) ? data.media?.[0]?.link : data.media?.link) || 'https://dummyimage.com/243x326/ccd6d9/266582.png&text=+'} 
-                        alt={data.translations?.en?.name} 
-                          onError={(e) => e.target.src = 'https://dummyimage.com/243x326/ccd6d9/266582.png&text=+'}/>
+                        <img src={(Array.isArray(data.media) ? data.media?.[0]?.link : data.media?.link) || 'https://dummyimage.com/243x326/ccd6d9/266582.png&text=+'}
+                            alt={data.translations?.en?.name}
+                            onError={(e) => e.target.src = 'https://dummyimage.com/243x326/ccd6d9/266582.png&text=+'} />
 
                     </div>
 

@@ -28,10 +28,6 @@ export const Rec2 = () => {
 
         const fetchArtEventsApi = async () => {
 
-            //Guided tours contemporary art: events/category?mainCategory=102&subCategory=251
-            //Painting: events/category?mainCategory=23&subCategory=30
-            //Sculpture: events/category?mainCategory=23&subCategory=26
-            //Installation: events/category?mainCategory=23&subCategory=29
 
             try {
                 const headers = {

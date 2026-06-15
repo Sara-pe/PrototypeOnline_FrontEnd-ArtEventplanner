@@ -14,6 +14,10 @@ export const AgendaAddEvent = () => {
 
     console.log(event)
 
+     useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const handleAddSubmit = async (formData) => {
         const data = Object.fromEntries(formData.entries());
         await eventService.create(data);
