@@ -3,6 +3,21 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { RecCard } from './RecCard'
 
+const toArray = (events) => {
+
+    //  If null or undefined 
+    if (!events) return []
+
+    // If event is an array
+    if (Array.isArray(events)) return events
+
+    // If event is an empty object
+    if (Object.keys(events).length === 0) return []
+
+    // If events is an object
+    return [events]
+}
+
 export const Rec2 = () => {
 
     const [data, setData] = useState([])
@@ -24,17 +39,26 @@ export const Rec2 = () => {
                     Accept: 'application/json'
                 }
 
-                const [painting, sculpture, contemporaryArt] = await Promise.all([
-                    axios.get('https://api.brussels:443/api/agenda/0.0.1/events/category?mainCategory=23&subCategory=30', { headers }),
-                    axios.get('https://api.brussels:443/api/agenda/0.0.1/events/category?mainCategory=23&subCategory=26', { headers }),
-                    axios.get('https://api.brussels:443/api/agenda/0.0.1/events/category?mainCategory=102&subCategory=251', { headers })
+                const [wiels, bozar, ninoMier, almineReich, laLoge, walterBlanc
+                ] = await Promise.all([
+                    axios.get('https://api.brussels:443/api/agenda/0.0.1/events/location?lon=4.3257873&lat=50.8243881&dist=10', { headers }),
+                    axios.get('https://api.brussels:443/api/agenda/0.0.1/events/location?lon=4.3595536&lat=50.8442559&dist=10', { headers }),
+                    axios.get('https://api.brussels:443/api/agenda/0.0.1/events/location?lon=4.3543284&lat=50.8399647&dist=10', { headers }),
+                    axios.get('https://api.brussels:443/api/agenda/0.0.1/events/location?lon=4.3685720&lat=50.8190336&dist=10', { headers }),
+                    axios.get('https://api.brussels:443/api/agenda/0.0.1/events/location?lon=4.3656810&lat=50.8284465&dist=10', { headers }),
+                    axios.get('https://api.brussels:443/api/agenda/0.0.1/events/location?lon=4.2995581&lat=50.8625391&dist=100', { headers }),
+
+
                 ])
 
                 const combined = [
-                    ...(painting.data.response.results.event || []),
-                    ...(sculpture.data.response.results.event || []),
-                    ...(contemporaryArt.data.response.results.event || [])
-                ]
+                    ...toArray(wiels.data.response.results.event),
+                    ...toArray(bozar.data.response.results.event),
+                    ...toArray(ninoMier.data.response.results.event),
+                    ...toArray(almineReich.data.response.results.event),
+                    ...toArray(laLoge.data.response.results.event),
+                    ...toArray(walterBlanc.data.response.results.event)
+                ].sort((a, b) => new Date(a.date_end) - new Date(b.date_end))
 
                 setData(combined)
                 setLoading(false)
@@ -59,7 +83,7 @@ export const Rec2 = () => {
 
     return (
         <div className={styles.containerRec}>
-            <h2>Exhibitions</h2>
+            <h2>Contemporary Art</h2>
             <div className={styles.carrousel}>
                 <div className={styles.eventList}>
                     {data.map((event, index) => (<RecCard key={index} event={event} index={index} />))}

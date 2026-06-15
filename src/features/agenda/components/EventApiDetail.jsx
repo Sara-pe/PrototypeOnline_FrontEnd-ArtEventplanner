@@ -2,15 +2,17 @@ import styles from '../Agenda.module.css'
 import axios from 'axios'
 import { useState, useEffect, useRef } from 'react'
 import { RecCard } from './RecCard'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
 export const EventApiDetail = () => {
 
     const { id } = useParams();
-    const [data, setData] = useState([])
+    const location = useLocation()
+
     const [error, setError] = useState(false)
-    const [loading, setLoading] = useState(true)
+    const [data, setData] = useState(location.state?.event || null)
+    const [loading, setLoading] = useState(!location.state?.event)
 
     const [expanded, setExpanded] = useState(false)
 
@@ -19,10 +21,11 @@ export const EventApiDetail = () => {
 
     useEffect(() => {
 
+        if (data) return
+
         const fetchDateApi = async () => {
 
             try {
-
 
                 const eventDetailApi = await axios.get(`https://api.brussels:443/api/agenda/0.0.1/events/${id}`, {
                     headers:
@@ -51,7 +54,7 @@ export const EventApiDetail = () => {
 
     useEffect(() => {
         if (textRef.current) {
-            setIsOverflowing(textRef.current.scrollHeight > 208)
+            setIsOverflowing(textRef.current.scrollHeight > 198)
         }
     }, [data])
 
@@ -96,7 +99,9 @@ export const EventApiDetail = () => {
 
                     {/* CardIntro*/}
                     <div className={styles.cardIntro}>
-                        <img src={(Array.isArray(data.media) ? data.media?.[0]?.link : data.media?.link) || 'https://dummyimage.com/243x326/ccd6d9/266582.png&text=+'} alt={data.translations?.en?.name} />
+                        <img src={(Array.isArray(data.media) ? data.media?.[0]?.link : data.media?.link) || 'https://dummyimage.com/243x326/ccd6d9/266582.png&text=+'} 
+                        alt={data.translations?.en?.name} 
+                          onError={(e) => e.target.src = 'https://dummyimage.com/243x326/ccd6d9/266582.png&text=+'}/>
 
                     </div>
 
